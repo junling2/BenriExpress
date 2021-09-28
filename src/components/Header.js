@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {colors, parameters} from '../global/styles';
 
 function Header({title}) {
@@ -15,6 +15,7 @@ export default Header;
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: colors.secondary,
     height: parameters.headerHeight,
   },
@@ -23,6 +24,6 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 22,
     fontWeight: 'bold',
-    marginLeft: '1rem',
+    marginLeft: 20,
   },
 });
