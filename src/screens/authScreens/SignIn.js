@@ -65,7 +65,12 @@ const SignIn = () => {
       </View>
 
       <View style={{marginVertical: 10}}>
-        <Text style={{...styles.text1, textDecorationLine: 'underline'}}>
+        <Text
+          style={{
+            ...styles.text1,
+            textDecorationLine: 'underline',
+            color: 'blue',
+          }}>
           Forgot Password?
         </Text>
       </View>
@@ -97,8 +102,13 @@ const SignIn = () => {
         />
       </View>
 
-      <View style={{marginVertical: 10}}>
-        <Text style={{...styles.text1, textDecorationLine: 'underline'}}>
+      <View style={{marginVertical: 13}}>
+        <Text
+          style={{
+            ...styles.text1,
+            textDecorationLine: 'underline',
+            color: 'blue',
+          }}>
           Create new account
         </Text>
       </View>

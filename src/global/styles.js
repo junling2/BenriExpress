@@ -1,7 +1,7 @@
 export const colors = {
   statusbar: 'black',
   primary: '#fff5ee',
-  secondary: '#1e90ff',
+  secondary: '#646ecb',
 };
 
 export const parameters = {
