@@ -6,7 +6,7 @@ import {colors} from '../../global/styles';
 import logo from '../../images/logo.png';
 import welcomeImage from '../../images/welcomeImage.png';
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
   return (
     <View style={styles.background}>
       <View style={styles.logoContainer}>
@@ -28,6 +28,9 @@ const Welcome = () => {
             title="Sign In"
             buttonStyle={styles.button}
             titleStyle={styles.buttonText}
+            onPress={() => {
+              navigation.navigate('SignIn');
+            }}
           />
         </View>
 

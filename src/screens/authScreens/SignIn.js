@@ -6,7 +6,7 @@ import {colors} from '../../global/styles';
 import * as Animatable from 'react-native-animatable';
 import {Icon, Button, SocialIcon} from 'react-native-elements';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   const [input2Focus, setInput2Focus] = useState(false);
 
   const input1 = useRef(1);
@@ -61,6 +61,9 @@ const SignIn = () => {
           title="Sign In"
           buttonStyle={styles.button}
           titleStyle={styles.buttonText}
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
         />
       </View>
 
