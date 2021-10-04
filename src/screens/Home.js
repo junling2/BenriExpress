@@ -6,13 +6,18 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  FlatList,
+  Pressable,
+  Image,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import HomeHeader from '../components/HomeHeader';
+import {filterData} from '../global/data';
 import {colors} from '../global/styles';
 
 const Home = () => {
   const [delivery, setDelivery] = useState(true);
+  const [indexCheck, setIndexCheck] = useState('0');
   return (
     <View style={styles.container}>
       <HomeHeader />
@@ -20,7 +25,7 @@ const Home = () => {
         <View>
           <View
             style={{
-              backgroundColor: 'mintcream',
+              backgroundColor: 'white',
               flexDirection: 'row',
               justifyContent: 'space-evenly',
             }}>
@@ -31,11 +36,14 @@ const Home = () => {
               <View
                 style={{
                   ...styles.deliveryButton,
-                  backgroundColor: delivery
-                    ? '#87cefa'
-                    : 'rgba(135, 206, 250, 0.2)',
+                  backgroundColor: delivery ? colors.secondary : 'gainsboro',
                 }}>
-                <Text style={styles.deliveryText}>Delivery</Text>
+                <Text
+                  style={
+                    delivery ? styles.deliveryTextActive : styles.deliveryText
+                  }>
+                  Delivery
+                </Text>
               </View>
             </TouchableOpacity>
 
@@ -46,11 +54,14 @@ const Home = () => {
               <View
                 style={{
                   ...styles.deliveryButton,
-                  backgroundColor: delivery
-                    ? 'rgba(135, 206, 250, 0.2)'
-                    : '#87cefa',
+                  backgroundColor: delivery ? 'gainsboro' : colors.secondary,
                 }}>
-                <Text style={styles.deliveryText}>Pick Up</Text>
+                <Text
+                  style={
+                    delivery ? styles.deliveryText : styles.deliveryTextActive
+                  }>
+                  Pick Up
+                </Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -88,6 +99,41 @@ const Home = () => {
             />
           </View>
         </View>
+
+        <View style={{backgroundColor: 'white', marginTop: 10}}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={filterData}
+            keyExtractor={item => item.id}
+            extraData={indexCheck}
+            renderItem={({item, index}) => (
+              <Pressable
+                onPress={() => {
+                  setIndexCheck(item.id);
+                }}>
+                <View
+                  style={
+                    indexCheck === item.id
+                      ? {...styles.iconCardActive}
+                      : {...styles.iconCard}
+                  }>
+                  <Image source={item.image} />
+                  <View>
+                    <Text
+                      style={
+                        indexCheck === item.id
+                          ? {...styles.iconCardTextActive}
+                          : {...styles.iconCardText}
+                      }>
+                      {item.name}
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            )}
+          />
+        </View>
       </ScrollView>
     </View>
   );
@@ -96,6 +142,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'lightgrey',
   },
 
   deliveryButton: {
@@ -103,20 +150,23 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 5,
     marginVertical: 10,
-    borderWidth: 1,
-    borderColor: 'black',
   },
 
   deliveryText: {
-    marginLeft: 5,
     fontSize: 18,
+    color: 'black',
+  },
+
+  deliveryTextActive: {
+    fontSize: 18,
+    color: 'white',
   },
 
   filterView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: 'mintcream',
+    backgroundColor: 'white',
     paddingTop: 5,
     paddingBottom: 15,
   },
@@ -145,6 +195,42 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     paddingHorizontal: 5,
     borderRadius: 5,
+  },
+
+  iconCard: {
+    borderRadius: 15,
+    backgroundColor: 'gainsboro',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    width: 80,
+    height: 90,
+    marginHorizontal: 10,
+    marginVertical: 15,
+  },
+
+  iconCardActive: {
+    borderRadius: 15,
+    backgroundColor: colors.secondary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    width: 80,
+    height: 90,
+    marginHorizontal: 10,
+    marginVertical: 15,
+  },
+
+  iconCardText: {
+    fontWeight: 'bold',
+    marginVertical: 5,
+    color: 'black',
+  },
+
+  iconCardTextActive: {
+    fontWeight: 'bold',
+    marginVertical: 5,
+    color: 'white',
   },
 });
 
