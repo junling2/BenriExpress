@@ -9,11 +9,15 @@ import {
   FlatList,
   Pressable,
   Image,
+  Dimensions,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
+import FoodCard from '../components/FoodCard';
 import HomeHeader from '../components/HomeHeader';
-import {filterData} from '../global/data';
+import {filterData, foodData} from '../global/data';
 import {colors} from '../global/styles';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const Home = () => {
   const [delivery, setDelivery] = useState(true);
@@ -131,6 +135,30 @@ const Home = () => {
                   </View>
                 </View>
               </Pressable>
+            )}
+          />
+        </View>
+
+        <View style={{backgroundColor: 'white', marginTop: 10}}>
+          <FlatList
+            horizontal={true}
+            data={foodData}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+              <View>
+                <FoodCard
+                  name={item.name}
+                  delivery={delivery}
+                  deliveryFee={item.deliveryFee}
+                  promotion={item.promotion}
+                  promotionType={item.promotionType}
+                  rating={item.rating}
+                  distance={item.distance}
+                  minutesAway={delivery ? item.deliveryTime : item.pickupTime}
+                  screenWidth={SCREEN_WIDTH * 0.8}
+                  image={item.image}
+                />
+              </View>
             )}
           />
         </View>

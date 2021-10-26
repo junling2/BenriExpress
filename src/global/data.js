@@ -7,3 +7,47 @@ export const filterData = [
   {name: 'Mexican', image: require('../images/mexican.png'), id: '5'},
   {name: 'Desserts', image: require('../images/dessert.png'), id: '6'},
 ];
+
+export const foodData = [
+  {
+    name: 'Ichiraku Ramen',
+    address: 'Konoha',
+    coordinates: {lat: 35.689487, lng: 139.691711},
+    distance: '0.6 km',
+    rating: '4.5',
+    numReviews: 23992,
+    promotion: true,
+    promotionType: '5 orders until $15 reward',
+    deliveryTime: '25-30 min',
+    deliveryFee: 3.99,
+    pickupTime: '15-20 min',
+    foodType: 'Ramen, Japanese',
+    image: require('../images/ramen.png'),
+    menuItems: [
+      {name: 'Tonkatsu Ramen', price: 15.69, category: 'Main'},
+      {name: 'Miso Ramen', price: 15.69, category: 'Main'},
+      {name: 'Matcha Ice Cream', price: 4.2, category: 'Dessert'},
+    ],
+    id: 0,
+  },
+  {
+    name: 'Straw Hat Cafe',
+    address: 'Wano',
+    coordinates: {lat: 35.689487, lng: 139.691711},
+    distance: '1.8 km',
+    rating: '5.0',
+    numReviews: 23992,
+    promotion: true,
+    promotionType: 'Free Item (Spend $40)',
+    deliveryTime: '25-30 min',
+    deliveryFee: 4.89,
+    pickupTime: '15-20 min',
+    foodType: 'Meat, Japanese',
+    image: require('../images/cafe.png'),
+    menuItems: [
+      {name: 'Meat Log', price: 15.69, category: 'Main'},
+      {name: 'Senzu Bean', price: 4.2, category: 'Dessert'},
+    ],
+    id: 1,
+  },
+];
