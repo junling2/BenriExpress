@@ -19,7 +19,7 @@ import {colors} from '../global/styles';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState('0');
   return (
@@ -54,6 +54,7 @@ const Home = () => {
             <TouchableOpacity
               onPress={() => {
                 setDelivery(false);
+                navigation.navigate('MapScreen');
               }}>
               <View
                 style={{
@@ -142,6 +143,7 @@ const Home = () => {
         <View style={{backgroundColor: 'white', marginTop: 10}}>
           <FlatList
             horizontal={true}
+            showsHorizontalScrollIndicator={false}
             data={foodData}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
@@ -161,6 +163,25 @@ const Home = () => {
               </View>
             )}
           />
+        </View>
+
+        <View style={{...styles.verticalCard, width: SCREEN_WIDTH}}>
+          {foodData.map(item => (
+            <View key={item.id}>
+              <FoodCard
+                name={item.name}
+                delivery={delivery}
+                deliveryFee={item.deliveryFee}
+                promotion={item.promotion}
+                promotionType={item.promotionType}
+                rating={item.rating}
+                distance={item.distance}
+                minutesAway={delivery ? item.deliveryTime : item.pickupTime}
+                screenWidth={SCREEN_WIDTH * 0.95}
+                image={item.image}
+              />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -259,6 +280,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 5,
     color: 'white',
+  },
+  verticalCard: {
+    backgroundColor: 'white',
+    marginTop: 10,
+  },
+  floatButton: {
+    position: 'absolute',
+    backgroundColor: colors.primary,
+    bottom: 10,
+    right: 15,
+    elevation: 10,
+    width: 55,
+    height: 55,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

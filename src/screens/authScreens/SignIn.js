@@ -62,7 +62,7 @@ const SignIn = ({navigation}) => {
           buttonStyle={styles.button}
           titleStyle={styles.buttonText}
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate('bottomNavigator');
           }}
         />
       </View>
