@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Icon, withBadge} from 'react-native-elements';
 import {colors, parameters} from '../global/styles';
 
-const HomeHeader = () => {
+const HomeHeader = ({navigation}) => {
   const Cart = withBadge(0)(Icon);
 
   return (
@@ -15,6 +15,9 @@ const HomeHeader = () => {
           name="menu"
           color={colors.primary}
           size={32}
+          onPress={() => {
+            navigation.toggleDrawer();
+          }}
         />
       </View>
 
